@@ -4,10 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#393280",
+        primary: "#173F5F",
         secondary: "#ED553B",
         white: "#FFFFFF",
         sectionBg: "#FCEBEA",
+      },
+      backgroundImage: {
+        hero1: "url(src/assets/imgs/landing3.webp)",
       },
     },
   },

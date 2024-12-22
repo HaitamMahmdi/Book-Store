@@ -54,18 +54,23 @@ const a = faFacebook;
         </div>
         <ul class="web-links flex justify-between flex-wrap">
           <li>
-            <a class="block border-r border-[#111111] px-5" href="">HOME</a>
+            <RouterLink
+              :to="{ name: 'Home' }"
+              class="block border-r border-[#D1D1D1] px-5"
+              href=""
+              >HOME</RouterLink
+            >
           </li>
           <li>
-            <a class="border-r border-[#111111] block px-5" href="">ABOUT US</a>
+            <a class="border-r border-[#D1D1D1] block px-5" href="">ABOUT US</a>
           </li>
           <li>
-            <a class="border-r border-[#111111] block px-5" href=""
+            <a class="border-r border-[#D1D1D1] block px-5" href=""
               >NEW RELEASE</a
             >
           </li>
           <li>
-            <a class="border-r border-[#111111] block px-5" href="">
+            <a class="border-r border-[#D1D1D1] block px-5" href="">
               CONTACT US</a
             >
           </li>
@@ -93,6 +98,9 @@ const a = faFacebook;
       </nav>
     </div>
   </header>
+  <main>
+    <RouterView></RouterView>
+  </main>
 </template>
 
 <style scoped></style>
