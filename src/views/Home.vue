@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+import CarouselCom from "../components/CarouselCom.vue";
+import { ref } from "vue";
+</script>
 <template>
   <div
     class="landing bg-hero1 w-full min-h-[calc(100vh-158px)] bg-cover bg-center"
@@ -114,7 +117,9 @@
         </p>
       </div>
     </section>
-    <section class="flex flex-wrap items-center bg-sectionBg justify-evenly">
+    <section
+      class="flex flex-wrap my-20 items-center bg-sectionBg justify-evenly"
+    >
       <div class="max-w-[40.19rem]">
         <h3
           class="text-[clamp(1.4rem,10vw,1.88rem)] mb-4 text-primary font-extrabold"
@@ -137,7 +142,7 @@
             id=""
           />
           <input
-            class="bg-[#ED553B] w-[9.56rem] font-bold text-lx text-white rounded-r-lg"
+            class="bg-secondary w-[9.56rem] font-bold text-lx text-white rounded-r-lg"
             type="button"
             value="Login"
           />
@@ -152,5 +157,12 @@
         />
       </div>
     </section>
+
+    <CarouselCom
+      :url="'https://openlibrary.org/subjects/food.json?limit=24'"
+      :imagSize="'M'"
+      :imagesPerPage="4"
+    >
+    </CarouselCom>
   </div>
 </template>
