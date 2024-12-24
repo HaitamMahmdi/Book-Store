@@ -8,6 +8,7 @@ export default {
         secondary: "#ED553B",
         white: "#FFFFFF",
         sectionBg: "#FCEBEA",
+        textSecondary: "#767070",
       },
       backgroundImage: {
         hero1: "url(src/assets/imgs/landing3.webp)",

@@ -1,6 +1,34 @@
 <script setup>
 import CarouselCom from "../components/CarouselCom.vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+
+const items = ref([]); // متغير لتخزين قائمة الكتب
+const istrue = ref(false);
+fetch(`https://openlibrary.org/subjects/philosophy.json?limit=24`)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    items.value = data.works; // تخزين قائمة الكتب
+    istrue.value = true;
+  })
+  .catch((error) => console.error("Error fetching data:", error));
+
+const currentBook = ref(0);
+const featuredBook = ref(null);
+
+onMounted(() => {
+  if (items.value && featuredBook.value) {
+    const num = ref(currentBook.value);
+
+    setInterval(() => {
+      if (currentBook.value <= items.value.length - 1) {
+        currentBook.value += 1;
+      } else {
+        currentBook.value = 0;
+      }
+    }, 4000);
+  }
+});
 </script>
 <template>
   <div
@@ -158,11 +186,61 @@ import { ref } from "vue";
       </div>
     </section>
 
-    <CarouselCom
-      :url="'https://openlibrary.org/subjects/food.json?limit=24'"
-      :imagSize="'M'"
-      :imagesPerPage="4"
-    >
-    </CarouselCom>
+    <section class="pb-[5.75rem] border-b border-[#E0E0E0]">
+      <div class="text-center mb-20">
+        <h2 class="text-primary font-semibold text-4xl">New Release Books</h2>
+        <p class="text-lg text-textSecondary my-4">
+          1000+ books are published by different authors everyday.
+        </p>
+        <a class="font-bold text-secondary" href=""
+          >View all products <font-awesome-icon icon="arrow-right"
+        /></a>
+      </div>
+      <CarouselCom
+        :url="'https://openlibrary.org/subjects/food.json?limit=24'"
+        :imagSize="'M'"
+        :imagesPerPage="4"
+      >
+      </CarouselCom>
+    </section>
+    <section ref="featuredBook" class="py-[5.75rem] transition">
+      <article v-if="items.length > 0" class="flex flex-wrap justify-between">
+        <header
+          class="w-[25.12rem] p-[1.25rem] shadow-[0px_0px_20px_0px_#9797973b]"
+        >
+          <img
+            class="w-full h-full"
+            :src="`https://covers.openlibrary.org/b/id/${items[currentBook].cover_id}-L.jpg`"
+            alt=""
+          />
+        </header>
+        <section class="py-[7.1875rem]">
+          <p class="font-semibold text-textSecondary">
+            Featured Book of the week
+          </p>
+          <h3 class="text-primary text-3xl font-semibold my-2.5">
+            {{ items[currentBook].title }}
+          </h3>
+          <div>
+            <font-awesome-icon
+              v-for="x in 5"
+              :key="x"
+              class="text-[#FFD700] text-lg"
+              icon="star"
+            />
+          </div>
+          <p class="text-textSecondary text-lg max-w-[50rem] my-8">
+            Jump start your book reading by quickly check through the popular
+            book categories. 1000+ books are published by different authors
+            everyday. Buy your favourite books on TreeBooks Today.
+          </p>
+          <button
+            class="font-medium text-primary w-[12.3125rem] h-[3.8125rem] border border-primary rounded-md"
+          >
+            View more <font-awesome-icon class="ml-3" icon="arrow-right" />
+          </button>
+        </section>
+      </article>
+    </section>
   </div>
 </template>
