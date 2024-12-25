@@ -313,4 +313,37 @@ console.log(countdown.value);
       </div>
     </section>
   </div>
+  <section
+    class="joinNewsLetter bg-sectionBg max-w-[1536px] min-h-[31.25rem] my-40"
+  >
+    <div
+      class="max-w-[78.8125rem] relative min-h-[20.8125rem] m-auto text-white bg-secondary text-center p-10"
+    >
+      <h2
+        class="font-bold m-auto max-w-[48rem] text-[clamp(1.4rem,10vw,2.88rem)]"
+      >
+        Subscibe to Our Newsletter
+      </h2>
+      <p class="max-w-[48rem] m-auto">
+        Sed eu feugiat amet, libero ipsum enim pharetra hac dolor sit amet,
+        consectetur. Elit adipiscing enim pharetra hac.
+      </p>
+      <div
+        class="absolute flex items-center justify-center p-3 bg-white min-h-[6.25rem] max-w-[43rem] translate-x-[-50%] translate-y-[50%] left-2/4 bottom-0"
+      >
+        <input
+          class="h-[4.4375rem] w-[26.1875rem] outline-0 text-black"
+          type="email"
+          placeholder="example@gmail.com"
+          name=""
+          id=""
+        />
+        <input
+          class="w-[12.87500rem] bg-secondary h-[4.4375rem]"
+          type="button"
+          value="SUBCRIBE"
+        />
+      </div>
+    </div>
+  </section>
 </template>
