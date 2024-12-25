@@ -18,8 +18,6 @@ const featuredBook = ref(null);
 
 onMounted(() => {
   if (items.value && featuredBook.value) {
-    const num = ref(currentBook.value);
-
     setInterval(() => {
       if (currentBook.value <= items.value.length - 1) {
         currentBook.value += 1;
@@ -29,6 +27,40 @@ onMounted(() => {
     }, 4000);
   }
 });
+const countdown = ref({
+  days: 0,
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+});
+
+function startCountdown(durationInSeconds) {
+  let remainingTime = durationInSeconds;
+
+  const timerInterval = setInterval(() => {
+    // Calculate days, hours, minutes, and seconds
+    const days = Math.floor(remainingTime / (24 * 60 * 60));
+    const hours = Math.floor((remainingTime % (24 * 60 * 60)) / (60 * 60));
+    const minutes = Math.floor((remainingTime % (60 * 60)) / 60);
+    const seconds = remainingTime % 60;
+    // Display the countdown
+    countdown.value.days = days;
+    countdown.value.hours = hours;
+    countdown.value.minutes = minutes;
+    countdown.value.seconds = seconds;
+    // Decrease the remaining time
+    remainingTime--;
+    // Stop the timer when it reaches zero
+    if (remainingTime < 0) {
+      clearInterval(timerInterval);
+      console.log("Countdown complete!");
+    }
+  }, 1000); // Update every second
+}
+
+// Example usage: Start a countdown from 1 day (24 hours)
+startCountdown(18432 * 60 * 60);
+console.log(countdown.value);
 </script>
 <template>
   <div
@@ -241,6 +273,44 @@ onMounted(() => {
           </button>
         </section>
       </article>
+    </section>
+    <section
+      class="offersSection bg-sectionBg p-[1.5rem] rounded-lg flex flex-wrap"
+    >
+      <div class="max-w-[36.75rem] pt-10 pl-5">
+        <h3 class="text-primary text-[clamp(1rem,10vw,2.81rem)] font-bold">
+          All books are 50% off now! Don't miss such a deal!
+        </h3>
+        <p class="text-textSecondary">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu
+          feugiat amet, libero ipsum enim pharetra hac.
+        </p>
+        <ul class="countDown mt-10 flex flex-wrap">
+          <li
+            class="w-[4.75rem] mr-2 h-[4.75rem] flex items-center justify-center font-bold text-3xl text-secondary"
+          >
+            {{ countdown.days }}D
+          </li>
+          <li
+            class="w-[4.75rem] mr-2 h-[4.75rem] flex items-center justify-center font-bold text-3xl text-secondary"
+          >
+            {{ countdown.hours }}H
+          </li>
+          <li
+            class="w-[4.75rem] mr-2 h-[4.75rem] flex items-center justify-center font-bold text-3xl text-secondary"
+          >
+            {{ countdown.minutes }}M
+          </li>
+          <li
+            class="w-[4.75rem] mr-2 h-[4.75rem] flex items-center justify-center font-bold text-3xl text-secondary"
+          >
+            {{ countdown.seconds }}S
+          </li>
+        </ul>
+      </div>
+      <div class="max-w-[39.50rem] max-h-[30.50rem]">
+        <img class="w-full h-full" src="../assets/imgs/Unsplash.png" alt="" />
+      </div>
     </section>
   </div>
 </template>
