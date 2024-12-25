@@ -101,6 +101,62 @@ const a = faFacebook;
   <main>
     <RouterView></RouterView>
   </main>
+  <footer class="text-white py-[6.3125rem] bg-secondary">
+    <div class="container flex flex-wrap justify-between max-w-[72.1875rem]">
+      <div>
+        <img src="./assets/imgs/logo.png" alt="" />
+        <p class="mt-5">
+          Nostrud exercitation ullamco laboris nisi <br />
+          ut aliquip ex ea commodo consequat.
+        </p>
+        <div
+          class="text-[clamp(1.4rem,10vw,2rem)] mt-10 flex flex-wrap justify-between max-w-[15.75rem]"
+        >
+          <font-awesome-icon :icon="['fab', 'facebook']" />
+          <font-awesome-icon :icon="['fab', 'youtube']" />
+          <font-awesome-icon :icon="['fab', 'twitter']" />
+          <font-awesome-icon :icon="['fab', 'linkedin']" />
+        </div>
+      </div>
+      <ul>
+        <h3 class="font-semibold text-2xl mb-5">COMPANY</h3>
+        <li>
+          <a class="block mb-2" href="">HOME</a>
+        </li>
+        <li>
+          <a class="block mb-2" href="">ABOUT US</a>
+        </li>
+        <li>
+          <a class="block mb-2" href="">BOOKS</a>
+        </li>
+        <li>
+          <a class="block mb-2" href="">NEW RELEASE</a>
+        </li>
+        <li>
+          <a class="block mb-2" href=""> CONTACT US</a>
+        </li>
+        <li>
+          <a class="" href="">BLOG</a>
+        </li>
+      </ul>
+      <ul>
+        <h3 class="font-semibold text-2xl mb-5">Importent Links</h3>
+        <li>
+          <a href="" class="block mb-2">Privacy Policy</a>
+        </li>
+        <li>
+          <a href="" class="block mb-2">FAQs</a>
+        </li>
+        <li>
+          <a href="">Terms of Service</a>
+        </li>
+      </ul>
+      <div class="w-full text-lg font-bold flex justify-between mt-[6.0625rem]">
+        <p>© 2022 Arihant. All Rights Reserved.</p>
+        <p class="">Privacy | Terms of Service</p>
+      </div>
+    </div>
+  </footer>
 </template>
 
 <style scoped></style>

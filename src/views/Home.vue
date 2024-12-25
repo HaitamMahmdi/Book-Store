@@ -346,4 +346,40 @@ console.log(countdown.value);
       </div>
     </div>
   </section>
+  <div class="container">
+    <section class="newArticles">
+      <div class="text-center">
+        <p class="text-textSecondary">Read our articles</p>
+
+        <h2
+          class="text-[clamp(1.4rem,10vw,3rem)] flex items-center text-primary"
+        >
+          <span class="block grow h-[2px] mr-[3.9375rem] bg-[#C8C8C8]"></span>
+          Latest Articles
+          <span class="block grow h-[2px] ml-[3.9375rem] bg-[#C8C8C8]"></span>
+        </h2>
+      </div>
+      <div class="flex flex-wrap">
+        <article class="max-w-[26.12500rem] p-[1.5rem]" v-for="x in 3" :key="x">
+          <header class="w-full h-[19rem]">
+            <img class="w-full h-full" src="../assets/imgs/1.png" alt="" />
+          </header>
+          <section>
+            <p class="text-[#74642F] my-4">2 aug, 2021</p>
+            <p class="text-[clamp(1.4rem,10vw,1.6rem)] text-primary">
+              Reading books always makes the moments happy
+            </p>
+          </section>
+          <footer
+            class="border-t text-primary mt-5 border-[#C8C8C8] flex justify-end py-4"
+          >
+            
+            <font-awesome-icon :icon="['fab', 'facebook']" />
+            <font-awesome-icon class="mx-2" :icon="['fab', 'instagram']" />
+            <font-awesome-icon :icon="['fab', 'twitter']" />
+          </footer>
+        </article>
+      </div>
+    </section>
+  </div>
 </template>
