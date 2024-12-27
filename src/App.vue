@@ -80,9 +80,9 @@ const a = faFacebook;
         </ul>
         <ul class="user-links flex flex-wrap">
           <li>
-            <a class="block px-4" href=""
+            <RouterLink class="block px-4" :to="{ name: 'singUp' }"
               ><font-awesome-icon :icon="faUser" />
-            </a>
+            </RouterLink>
           </li>
           <li>
             <a class="block px-4" href=""

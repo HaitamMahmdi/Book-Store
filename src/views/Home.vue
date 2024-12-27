@@ -64,8 +64,14 @@ console.log(countdown.value);
 </script>
 <template>
   <div
-    class="landing bg-hero1 w-full min-h-[calc(100vh-158px)] bg-cover bg-center"
+    class="landing relative w-full min-h-[clamp(0px,calc(100vh-158px),38.4375rem)] max-h-[28.37500rem]"
   >
+    <img
+      loading="eager"
+      class="w-full absolute z-[-1] left-0 top-0 h-full"
+      src="../assets/imgs/landing3.webp"
+      alt=""
+    />
     <div class="container pt-[7.25rem]">
       <div class="text-primary">
         <h1 class="text-[clamp(1rem,10vw,3.75rem)] font-semibold mb-5">
@@ -373,7 +379,6 @@ console.log(countdown.value);
           <footer
             class="border-t text-primary mt-5 border-[#C8C8C8] flex justify-end py-4"
           >
-            
             <font-awesome-icon :icon="['fab', 'facebook']" />
             <font-awesome-icon class="mx-2" :icon="['fab', 'instagram']" />
             <font-awesome-icon :icon="['fab', 'twitter']" />
