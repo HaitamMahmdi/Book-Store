@@ -1,4 +1,5 @@
 <script setup>
+import { useAuthStore } from "./store/authStore";
 import {
   faFacebook,
   faInstagram,
@@ -12,8 +13,12 @@ import {
   faHeart,
   faBagShopping,
 } from "@fortawesome/free-solid-svg-icons";
+import { onMounted } from "vue";
 // Add icons to the library
-const a = faFacebook;
+const AuthStore = useAuthStore();
+onMounted(() => {
+  AuthStore.monitorAuthState();
+});
 </script>
 
 <template>

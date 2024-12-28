@@ -4,6 +4,7 @@
 
 body {
   font-family: "Roboto", serif;
+  min-height: 100vh;
 }
 .container {
   margin-left: auto;

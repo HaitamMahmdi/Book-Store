@@ -1,4 +1,24 @@
-<script setup></script>
+<script setup>
+import { ref, onMounted } from "vue";
+import firebaseApp from "../firebase";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { useAuthStore } from "../store/authStore";
+
+const auth = getAuth();
+const email = ref(null);
+const password = ref(null);
+const authStore = useAuthStore();
+function SingUpUser() {
+  createUserWithEmailAndPassword(auth, email.value, password.value).then(
+    (cred) => {
+      console.log(`user is created:`, cred.user);
+    }
+  );
+}
+onMounted(() => {
+  authStore.monitorAuthState();
+});
+</script>
 <template>
   <div class="container my-10 flex justify-center">
     <div
@@ -8,19 +28,20 @@
         <img class="w-full h-full" src="../assets/imgs/singUp.jpg" alt="" />
       </div>
       <form
+        @click.prevent
         class="bg-[#dfe7e8] flex flex-col items-center w-[50%] p-5"
         action=""
       >
         <label
           class="block font-bold my-3 text-[clamp(1.4rem,10vw,1.5rem)]"
-          for="userDisplayName"
+          for="userName"
         >
-          Your Display Name</label
+          Your Name</label
         >
         <input
           class="outline-none rounded-3xl w-[80%] p-3 text-primary"
           type="text"
-          name="userDisplayName"
+          name="userName"
           id=""
         />
         <label
@@ -31,6 +52,7 @@
         <input
           class="outline-none rounded-3xl w-[80%] p-3 text-primary"
           type="email"
+          v-model="email"
           placeholder="exmple@gmail.com"
           name="userEmail"
           id=""
@@ -43,6 +65,7 @@
         <input
           class="outline-none rounded-3xl w-[80%] p-3"
           type="password"
+          v-model="password"
           min="6"
           max="12"
           name="password"
@@ -51,8 +74,9 @@
 
         <input
           type="submit"
-          class="outline-none rounded-3xl p-3 bg-secondary text-white w-[60%] mt-5"
+          class="outline-none cursor-pointer rounded-3xl p-3 bg-secondary text-white w-[60%] mt-5"
           value="submit"
+          @click="SingUpUser"
         />
         <p
           class="font-bold text-2xl my-5 w-full justify-center flex items-center"
