@@ -12,6 +12,11 @@ const routes = [
     name: "singUp",
     component: () => import("../views/SingUp.vue"),
   },
+  {
+    path: "/books",
+    name: "books",
+    component: () => import("../views/Books.vue"),
+  },
 ];
 
 const router = createRouter({
