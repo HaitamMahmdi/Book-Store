@@ -3,18 +3,26 @@ import { ref, onMounted } from "vue";
 import firebaseApp from "../firebase";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useAuthStore } from "../store/authStore";
-
+import { useRouter } from "vue-router";
 const auth = getAuth();
 const email = ref(null);
+const router = useRouter();
 const password = ref(null);
 const authStore = useAuthStore();
 function SingUpUser() {
-  createUserWithEmailAndPassword(auth, email.value, password.value).then(
-    (cred) => {
-      console.log(`user is created:`, cred.user);
-    }
-  );
+  createUserWithEmailAndPassword(auth, email.value, password.value)
+    .then((card) => {
+      if (card.user) {
+        router.push("/profile").catch((error) => {
+          console.error("Navigation error:", error);
+        });
+      }
+    })
+    .catch((error) => {
+      console.error("Error signing up:", error);
+    });
 }
+function goToProfile() {}
 onMounted(() => {
   authStore.monitorAuthState();
 });

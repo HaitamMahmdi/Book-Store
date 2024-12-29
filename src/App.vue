@@ -1,5 +1,6 @@
 <script setup>
 import { useAuthStore } from "./store/authStore";
+
 import {
   faFacebook,
   faInstagram,
@@ -92,7 +93,10 @@ onMounted(() => {
         </ul>
         <ul class="user-links flex flex-wrap">
           <li>
-            <RouterLink class="block px-4" :to="{ name: 'singUp' }"
+            <RouterLink
+              v-if="!AuthStore.user"
+              class="block px-4"
+              :to="{ name: 'singUp' }"
               ><font-awesome-icon :icon="faUser" />
             </RouterLink>
           </li>

@@ -74,7 +74,7 @@ console.log(countdown.value);
     />
     <div class="container pt-[7.25rem]">
       <div class="text-primary">
-        <h1 class="text-[clamp(1rem,10vw,3.75rem)] font-semibold mb-5">
+        <h1 class="text-[clamp(1.5rem,10vw,3.75rem)] font-semibold mb-5">
           ipsum dolor si
         </h1>
         <p class="text-2xl max-w-[37.94rem] leading-10">

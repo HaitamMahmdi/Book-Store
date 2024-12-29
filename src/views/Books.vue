@@ -1,7 +1,20 @@
 <script setup>
 import { onMounted, ref } from "vue";
+import Carousel from "../components/Carousel.vue";
 
 const items = ref([]); // متغير لتخزين قائمة الكتب
+const foodBooks = ref([]);
+const historyBooks = ref([]);
+const businessBooks = ref([]);
+
+fetch(`https://openlibrary.org/subjects/history.json?limit=25`)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    historyBooks.value = data.works; // تخزين قائمة الكتب
+  })
+  .catch((error) => console.error("Error fetching data:", error));
+
 fetch(`https://openlibrary.org/subjects/philosophy.json?limit=25`)
   .then((response) => response.json())
   .then((data) => {
@@ -10,14 +23,20 @@ fetch(`https://openlibrary.org/subjects/philosophy.json?limit=25`)
   })
   .catch((error) => console.error("Error fetching data:", error));
 
-function getPosison(e) {
-  const fater = e.target.parentElement.parentElement;
-  const chaild = e.target.getBoundingClientRect();
-  const father = e.target.parentElement.parentElement.getBoundingClientRect();
-  const relativeX = chaild.left - father.left;
-  fater.scrollTo(relativeX, 0);
-  console.log(relativeX);
-}
+fetch(`https://openlibrary.org/subjects/food.json?limit=25`)
+  .then((response) => response.json())
+  .then((data) => {
+    foodBooks.value = data.works; // تخزين قائمة الكتب
+  })
+  .catch((error) => console.error("Error fetching data:", error));
+
+fetch(`https://openlibrary.org/subjects/business.json?limit=25`)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    businessBooks.value = data.works; // تخزين قائمة الكتب
+  })
+  .catch((error) => console.error("Error fetching data:", error));
 </script>
 <template>
   <div class="container my-20">
@@ -84,15 +103,32 @@ function getPosison(e) {
         </div>
       </form>
     </section>
-    <section class="overflow-hidden flex" v-if="items.length > 0">
-      <div v-for="item in items" @click="getPosison" class="p-5">
-        <img
-          v-if="item.cover_id"
-          class="min-w-[250px] h-[250px]"
-          :src="`https://covers.openlibrary.org/b/id/${item.cover_id}-L.jpg`"
-          alt=""
-        />
-      </div>
-    </section>
+    <h2
+      class="text-[clamp(1.4rem,10vw,2.75rem)] mb-5 mt-40 p-5 bg-sectionBg text-secondary font-bold"
+    >
+      philosophy Books
+    </h2>
+    <Carousel :arr="items"></Carousel>
+
+    <h2
+      class="text-[clamp(1.4rem,10vw,2.75rem)] mb-5 mt-40 p-5 bg-sectionBg text-secondary font-bold"
+    >
+      History Books
+    </h2>
+    <Carousel :arr="foodBooks"></Carousel>
+
+    <h2
+      class="text-[clamp(1.4rem,10vw,2.75rem)] mb-5 mt-40 p-5 bg-sectionBg text-secondary font-bold"
+    >
+      Food Books
+    </h2>
+    <Carousel :arr="businessBooks"></Carousel>
+
+    <h2
+      class="text-[clamp(1.4rem,10vw,2.75rem)] mb-5 mt-40 p-5 bg-sectionBg text-secondary font-bold"
+    >
+      Business Books
+    </h2>
+    <Carousel :arr="historyBooks"></Carousel>
   </div>
 </template>
