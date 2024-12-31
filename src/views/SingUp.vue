@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import { collection, addDoc } from "firebase/firestore";
+import { doc, setDoc, collection } from "firebase/firestore";
 import { firebaseApp, db } from "../firebase";
 import {
   createUserWithEmailAndPassword,
@@ -32,14 +32,14 @@ async function SignUpUser() {
       });
 
       // Add user-specific data to Firestore
-      await addDoc(collection(db, `user-${card.user.uid}`), {
+      await setDoc(doc(collection(db, `user-${card.user.uid}`), "userInfo"), {
         favoriteBooks: [],
         savedBooks: [],
         readLater: [],
       });
 
       // Navigate to the profile page
-      await router.push("/profile");
+      await router.push("/Profile");
     }
   } catch (error) {
     console.error("Error during sign-up or document addition:", error);
