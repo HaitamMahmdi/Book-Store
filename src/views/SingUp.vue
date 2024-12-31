@@ -1,26 +1,49 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import firebaseApp from "../firebase";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+import { firebaseApp, db } from "../firebase";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  updateProfile,
+} from "firebase/auth";
 import { useAuthStore } from "../store/authStore";
 import { useRouter } from "vue-router";
 const auth = getAuth();
+const displayN = ref(null);
 const email = ref(null);
 const router = useRouter();
 const password = ref(null);
 const authStore = useAuthStore();
-function SingUpUser() {
-  createUserWithEmailAndPassword(auth, email.value, password.value)
-    .then((card) => {
-      if (card.user) {
-        router.push("/profile").catch((error) => {
-          console.error("Navigation error:", error);
-        });
-      }
-    })
-    .catch((error) => {
-      console.error("Error signing up:", error);
-    });
+async function SignUpUser() {
+  try {
+    // Create a new user with email and password
+    const card = await createUserWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value
+    );
+
+    // Ensure the user is authenticated before updating the profile
+    if (card.user) {
+      // Update the user's display name
+      await updateProfile(auth.currentUser, {
+        displayName: displayN.value, // display name
+      });
+
+      // Add user-specific data to Firestore
+      await addDoc(collection(db, `user-${card.user.uid}`), {
+        favoriteBooks: [],
+        savedBooks: [],
+        readLater: [],
+      });
+
+      // Navigate to the profile page
+      await router.push("/profile");
+    }
+  } catch (error) {
+    console.error("Error during sign-up or document addition:", error);
+  }
 }
 function goToProfile() {}
 onMounted(() => {
@@ -51,6 +74,8 @@ onMounted(() => {
           type="text"
           name="userName"
           id=""
+          required
+          v-model="displayN"
         />
         <label
           class="block font-bold my-3 text-[clamp(1.4rem,10vw,1.5rem)]"
@@ -64,6 +89,7 @@ onMounted(() => {
           placeholder="exmple@gmail.com"
           name="userEmail"
           id=""
+          required
         />
         <label
           class="block my-3 font-bold text-[clamp(1.4rem,10vw,1.5rem)]"
@@ -71,6 +97,7 @@ onMounted(() => {
           >password</label
         >
         <input
+          required
           class="outline-none rounded-3xl w-[80%] p-3"
           type="password"
           v-model="password"
@@ -84,7 +111,7 @@ onMounted(() => {
           type="submit"
           class="outline-none cursor-pointer rounded-3xl p-3 bg-secondary text-white w-[60%] mt-5"
           value="submit"
-          @click="SingUpUser"
+          @click="SignUpUser"
         />
         <p
           class="font-bold text-2xl my-5 w-full justify-center flex items-center"

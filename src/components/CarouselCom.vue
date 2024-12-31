@@ -37,6 +37,9 @@ function toNextPage(e) {
       :key="item.key"
     >
       <div class="w-[8.75rem] h-[13.1875rem] mx-auto mb-3">
+        <div>
+          <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+        </div>
         <img
           class="w-full h-full"
           width="100%"

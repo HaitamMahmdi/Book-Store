@@ -5,11 +5,10 @@ import router from "./router";
 import { createPinia } from "pinia";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faArrowRight, faStar } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 const pinia = createPinia();
 const app = createApp(App);
-// استيراد أيقونات إضافية
+
 import {
   faFacebook,
   faInstagram,
@@ -20,12 +19,18 @@ import {
   faLinkedin,
   faGoogle,
 } from "@fortawesome/free-brands-svg-icons"; // استيراد الأيقونات من فئة Brands
+import {
+  faArrowRight,
+  faStar,
+  faHeart,
+} from "@fortawesome/free-solid-svg-icons";
 
 // إضافة الأيقونات إلى المكتبة
 library.add(
   faArrowRight,
   faStar,
   faXTwitter,
+  faHeart,
   faFacebook,
   faGoogle,
   faYoutube,

@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 const auth = getAuth();
-import firebaseApp from "../firebase";
+import { firebaseApp } from "../firebase";
 export const useAuthStore = defineStore("authStore", {
   state: () => ({
     user: null, // تخزين حالة المستخدم

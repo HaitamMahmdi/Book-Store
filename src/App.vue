@@ -95,20 +95,16 @@ onMounted(() => {
           <li>
             <RouterLink
               v-if="!AuthStore.user"
-              class="block px-4"
+              class="block p-4"
               :to="{ name: 'singUp' }"
-              ><font-awesome-icon :icon="faUser" />
+              >SingUp
             </RouterLink>
-          </li>
-          <li>
-            <a class="block px-4" href=""
-              ><font-awesome-icon :icon="faHeart" />
-            </a>
-          </li>
-          <li>
-            <a class="block px-4" href=""
-              ><font-awesome-icon :icon="faBagShopping" />
-            </a>
+            <RouterLink
+              v-else
+              class="flex items-center justify-center rounded-full w-[3.75rem] h-[3.75rem] border border-primary"
+              :to="{ name: 'Profile' }"
+              ><font-awesome-icon class="text-primary" :icon="faUser"
+            /></RouterLink>
           </li>
         </ul>
       </nav>
