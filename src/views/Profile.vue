@@ -1,16 +1,28 @@
 <script setup>
+import { ref } from "vue";
 import { useAuthStore } from "../store/authStore";
-import { useRouter } from "vue-router";
-const router = useRouter();
-console.log(`sssss`);
-
-const authStore = useAuthStore();
-if (authStore.user) {
-  //  router.push({ name: "signUp" });
-}
+import { firebaseApp, db } from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
+const books = ref([]);
+const colRef = collection(db, `user-${useAuthStore().user.uid}`);
+getDocs(colRef).then((snap) => {
+  snap.docs.forEach((el) => {
+    if (el) {
+      fetch(
+        `https://cors-anywhere.herokuapp.com/https://openlibrary.org/works/${el}.json`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          books.value = data.works;
+        })
+        .catch((error) => console.error("Error fetching data:", error));
+    }
+  });
+});
 </script>
 <template>
-  <div class="container flex my-40">
+  <div class="container my-40">
     <section class="profileInfoc flex">
       <div>
         <img
@@ -37,8 +49,11 @@ if (authStore.user) {
       </div>
     </section>
     <section class="booksReadLikde">
+      <h2 class="bg-[#173f5fa4] py-3 px-2 mt-20 text-white font-bold text-3xl">
+        Books I Read
+      </h2>
       <ul>
-        <li></li>
+        <li>{{ useAuthStore().user.uid }}</li>
       </ul>
     </section>
   </div>

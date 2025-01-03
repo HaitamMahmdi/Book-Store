@@ -98,11 +98,15 @@ async function updateDocs(e) {
               class="absolute w-full h-full flex justify-center items-center transition-all bg-[#0000004d] opacity-0 hover:opacity-100"
             >
               <font-awesome-icon
-                class="text-red-500"
+                class="text-red-500 text-6xl"
                 v-if="itemz === item.cover_edition_key"
                 :icon="faHeart"
               />
-              <font-awesome-icon v-else :icon="faHeart" />
+              <font-awesome-icon
+                v-else
+                class="text-white text-6xl"
+                :icon="faHeart"
+              />
             </div>
             <img
               draggable="false"
