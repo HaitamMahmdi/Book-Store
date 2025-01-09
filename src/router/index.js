@@ -26,6 +26,11 @@ const routes = [
       requiresAuth: true,
     },
   },
+  {
+    path: "/aboutUs",
+    name: "aboutUs",
+    component: () => import("../views/AboutUs.vue"),
+  },
 ];
 
 const router = createRouter({

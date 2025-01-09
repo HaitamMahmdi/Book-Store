@@ -68,7 +68,11 @@ onMounted(() => {
             >
           </li>
           <li>
-            <a class="border-r border-[#D1D1D1] block px-5" href="">ABOUT US</a>
+            <RouterLink
+              :to="{ name: 'aboutUs' }"
+              class="border-r border-[#D1D1D1] block px-5"
+              >ABOUT US</RouterLink
+            >
           </li>
           <li>
             <RouterLink
