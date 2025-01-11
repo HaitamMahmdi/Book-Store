@@ -46,7 +46,6 @@ async function updateDocs(e) {
       const favoriteBooks = docSnap.data().favoriteBooks || [];
 
       const itemId = e.target.parentElement.id; // تخزين الـ ID في متغير
-
       // تحقق إذا كان العنصر موجودًا في favoriteBooks
       if (favoriteBooks.includes(itemId)) {
         // إذا كان موجودًا، قم بإزالته
@@ -74,7 +73,6 @@ async function updateDocs(e) {
 </script>
 
 <template>
-  <p v-if="updateDocs === 1">sssss</p>
   <section
     ref="carousel"
     @mousedown="dragStart"

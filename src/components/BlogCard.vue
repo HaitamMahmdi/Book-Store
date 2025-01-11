@@ -8,19 +8,30 @@ const props = defineProps({
   Image: {
     type: String,
     required: true,
-    default: `../assets/imgs/1.png`,
+    default: "../assets/imgs/1.png",
   },
 });
 </script>
 <template>
-  <article class="max-w-[26.12500rem] p-[1.5rem]" v-for="x in 3" :key="x">
+  <article v-if="props.Image" class="max-w-[26.12500rem] p-[1.5rem]">
     <header class="w-full h-[19rem]">
-      <img class="w-full h-full" :src="props.Image" alt="" />
+      <img
+        class="w-full h-full"
+        :src="props.Image ? props.Image : `../assets/imgs/1.png`"
+        alt=""
+      />
     </header>
     <section>
       <p class="text-[#74642F] my-4">2 aug, 2021</p>
-      <p class="text-[clamp(1.4rem,10vw,1.6rem)] text-primary">
-        {{ props.Title }}
+      <p
+        class="text-[clamp(1.4rem,10vw,1.6rem)] text-primary"
+        :title="props.Title"
+      >
+        {{
+          props.Title
+            ? props.Title.slice(0, 20)
+            : `Reading books always makes the moments happy`
+        }}...
       </p>
     </section>
     <footer
