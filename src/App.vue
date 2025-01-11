@@ -92,7 +92,11 @@ onMounted(() => {
             >
           </li>
           <li>
-            <a class="px-5" href="">BLOG</a>
+            <RouterLink
+              :to="{ name: 'blogs' }"
+              class="border-r border-[#D1D1D1] block px-5"
+              >BLOG</RouterLink
+            >
           </li>
         </ul>
         <ul class="user-links flex flex-wrap">
