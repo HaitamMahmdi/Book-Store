@@ -24,6 +24,9 @@ export default {
           "100%": { opacity: "0", top: "50%" },
         },
       },
+      screens: {
+        midDown: { max: "720px" },
+      },
     },
   },
   plugins: [],

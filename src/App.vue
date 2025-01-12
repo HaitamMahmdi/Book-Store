@@ -81,14 +81,13 @@ onMounted(() => {
               >BOOKS</RouterLink
             >
           </li>
+          <li></li>
           <li>
-            <a class="border-r border-[#D1D1D1] block px-5" href=""
-              >NEW RELEASE</a
+            <RouterLink
+              :to="{ name: 'FAQs' }"
+              class="border-r border-[#D1D1D1] block px-5"
             >
-          </li>
-          <li>
-            <a class="border-r border-[#D1D1D1] block px-5" href="">
-              CONTACT US</a
+              FAQs</RouterLink
             >
           </li>
           <li>
