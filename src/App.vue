@@ -1,6 +1,6 @@
 <script setup>
 import { useAuthStore } from "./store/authStore";
-
+import { ref } from "vue";
 import {
   faFacebook,
   faInstagram,
@@ -11,12 +11,14 @@ import {
 import {
   faPhone,
   faUser,
+  faBars,
   faHeart,
   faBagShopping,
 } from "@fortawesome/free-solid-svg-icons";
 import { onMounted } from "vue";
 // Add icons to the library
 const AuthStore = useAuthStore();
+const showList = ref(false);
 onMounted(() => {
   AuthStore.monitorAuthState();
 });
@@ -48,8 +50,63 @@ onMounted(() => {
         </ul>
       </div>
       <nav
-        class="flex flex-wrap justify-between text-lg items-center py-[0.5rem]"
+        class="flex flex-wrap relative justify-between text-lg items-center py-[0.5rem]"
       >
+        <button
+          @click="showList = !showList"
+          class="xs:block sm:hidden text-2xl p-4"
+        >
+          <font-awesome-icon :icon="faBars" />
+        </button>
+
+        <ul
+          v-if="showList"
+          class="xs:block absolute z-30 shdow-[-1px_20px_18px_1px_#dddddd7d] sm:hidden top-full left-0 bg-white w-full web-links flex justify-between flex-wrap"
+        >
+          <li>
+            <RouterLink
+              @click="showList = !showList"
+              :to="{ name: 'Home' }"
+              class="block border-b border-[#D1D1D1] p-5"
+              href=""
+              >HOME</RouterLink
+            >
+          </li>
+          <li>
+            <RouterLink
+              @click="showList = !showList"
+              :to="{ name: 'aboutUs' }"
+              class="border-b border-[#D1D1D1] block p-5"
+              >ABOUT US</RouterLink
+            >
+          </li>
+          <li>
+            <RouterLink
+              @click="showList = !showList"
+              :to="{ name: 'books' }"
+              class="border-b border-[#D1D1D1] block p-5"
+              >BOOKS</RouterLink
+            >
+          </li>
+          <li>
+            <RouterLink
+              @click="showList = !showList"
+              :to="{ name: 'FAQs' }"
+              class="border-b border-[#D1D1D1] block p-5"
+            >
+              FAQs</RouterLink
+            >
+          </li>
+          <li>
+            <RouterLink
+              @click="showList = !showList"
+              :to="{ name: 'blogs' }"
+              class="border-r border-[#D1D1D1] block p-5"
+              >BLOG</RouterLink
+            >
+          </li>
+        </ul>
+
         <div class="logo w-[5.38rem] h-[5.38rem]">
           <img
             width="100%"
@@ -58,7 +115,7 @@ onMounted(() => {
             alt=""
           />
         </div>
-        <ul class="web-links flex justify-between flex-wrap">
+        <ul class="xs:hidden sm:flex web-links justify-between flex-wrap">
           <li>
             <RouterLink
               :to="{ name: 'Home' }"

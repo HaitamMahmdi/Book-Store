@@ -25,7 +25,11 @@ export default {
         },
       },
       screens: {
-        midDown: { max: "720px" },
+        xs: "320px", // Extra Small
+        sm: "769px", // Small
+        md: "960px", // Medium
+        lg: "1280px", // Large
+        xl: "1920px", // Extra Large
       },
     },
   },
